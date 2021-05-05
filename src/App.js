@@ -76,7 +76,7 @@ render() {
             <Home blocks={blocks}/>
           </ApolloProvider>
         </Route>
-        <Route exact path="/comment">
+        <Route exact path="/comment/:block">
           <ApolloProvider client={client}>
             <Comment blocks={blocks}/>
           </ApolloProvider>

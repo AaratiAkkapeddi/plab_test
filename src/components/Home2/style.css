@@ -1,0 +1,25 @@
+
+.plain-block{
+	font-size:18px;
+	width:400px;
+	display:inline-block;
+	vertical-align: top;
+	border:1px solid black;
+	overflow:hidden;
+	margin: 25px;
+	padding:10px;
+}
+.plain-block img{
+	max-width: 100%;
+	display: block;
+	margin:0 auto;
+}
+.text-preview-inner{
+   overflow:hidden;
+   height: 312px;
+}
+.text-preview::after{
+   content:"...";
+   display: block;
+}
+
