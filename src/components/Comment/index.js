@@ -33,7 +33,7 @@ const ADD_COMMENT = gql`
 function Comment() {
   let input;
   const [create_comment, {error, data }] = useMutation(ADD_COMMENT, { errorPolicy: 'all' });
-   console.log(error)
+ console.log(error)
   return (
     <div>
       <form
