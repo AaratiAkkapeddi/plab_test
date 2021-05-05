@@ -9,7 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import blockLightboxCommentsFragment from '../../apollo/fragments/blockLightboxComments'
+// import blockLightboxCommentsFragment from '../../apollo/fragments/blockLightboxComments'
 // This query is executed at run time by Apollo.
 import { gql, useMutation } from '@apollo/client';
 
@@ -20,20 +20,17 @@ const ADD_COMMENT = gql`
       comment {
         __typename
         id
-        commentable {
-          ...BlockLightboxComments
-        }
       }
     }
   }
-  ${blockLightboxCommentsFragment}
+
 `;
 
 
 function Comment() {
   let input;
-  const [create_comment, {error, data }] = useMutation(ADD_COMMENT, { errorPolicy: 'all' });
- console.log(error)
+  const [create_comment, {data }] = useMutation(ADD_COMMENT, { errorPolicy: 'all' });
+ 
   return (
     <div>
       <form
@@ -41,10 +38,14 @@ function Comment() {
           e.preventDefault();
      
 
-          create_comment({ variables: { body: input.value, block_id:11596969} });
-		 
+          create_comment({ variables: { body: input.value, block_id:11596969} }).then(
+            res => console.log(res),
+            err => console.log(err)
+          );;
+          		 
           
           input.value = '';
+          
         }}
       >
         <input
