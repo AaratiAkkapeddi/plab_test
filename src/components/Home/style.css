@@ -1,6 +1,12 @@
 .plain-block{
 	display:inline-block;
+	max-height: 210px;
+	max-width:150px;
+	overflow-y: scroll;
+	vertical-align: top;
+	padding:8px;
 }
+
 .plain-block-inner{
 	font-size:18px;
 	width:100px;
@@ -8,8 +14,8 @@
 	display:block;
 	vertical-align: top;
 	border:1px solid black;
+	border-radius:5px;
 	overflow:hidden;
-	margin:8px;
 	padding:8px;
 }
 .plain-block-inner img{
@@ -26,10 +32,11 @@
    display: block;
 }
 .resonance{
-	font-size:12px;
+	font-size:10px;
 	border: 1px solid black;
 	border-radius: 100%;
-	padding:10px;
+	padding:8px;
+	float:left;
 	display: inline-block;
 }
 

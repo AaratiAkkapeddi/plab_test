@@ -130,10 +130,10 @@ let { block } = useParams();
           </div>)
     } else{
       return(
-        <h1>oops</h1>)
+        <h1>loading</h1>)
     }
   } else{
-    return(<h1>oops</h1>)
+    return(<h1>loading</h1>)
   }
   
 }
@@ -167,7 +167,7 @@ function Comment() {
             input = node;
           }}
         />
-        <button type="submit">Add Resonance</button>
+        <button type="submit">Add a Resonance</button>
       </form>
     </div>
   );
