@@ -142,7 +142,40 @@ if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
   console.log(data)
 
+ let handleClick = (comment) => {
+    let els = document.querySelectorAll(".plain-block");
+    let all = document.querySelector(".all");
+    all.classList.remove('on')
+    els.forEach((el)=>{
+      el.style.display = "none";
 
+
+      if(el.classList.contains(comment)){
+        el.style.display = "inline-block";
+      }
+    })
+    let res = document.querySelectorAll(".resonance");
+    res.forEach((re)=>{
+      if(re.textContent.includes(comment)){
+         re.classList.add("on") 
+      } else {
+        re.classList.remove("on")
+      }
+      
+    })
+  }
+  let handleAll = (comment) => {
+    let els = document.querySelectorAll(".plain-block");
+    let all = document.querySelector(".all");
+    all.classList.add('on')
+    els.forEach((el)=>{
+      el.style.display = "inline-block";
+    })
+    let res = document.querySelectorAll(".resonance");
+    res.forEach((re)=>{
+      re.classList.remove("on") 
+    })
+  }
     let blocks = data.channel.blokks;
     let blocksClean = [];
     blocks.forEach((c) => {
@@ -207,7 +240,7 @@ if (loading) return 'Loading...';
       allComments = resonancesClean.map( (comment, index) => {
         if(comment.trim() != ""){
           return(
-            <div key={comment + index} className="resonance">{comment}</div>
+            <div onClick={() => handleClick(comment)} key={comment + index} className="resonance">{comment}</div>
           )
         }
         
@@ -216,7 +249,7 @@ if (loading) return 'Loading...';
     if(block.__typename == "Image"){
      
       
-      return (<div key={block.id} id={block.id} className='plain-block'>
+      return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
         <div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
@@ -227,7 +260,7 @@ if (loading) return 'Loading...';
           </div>)
     } else if (block.__typename == "Text"){
         
-      return (<div key={block.id} id={block.id} className='plain-block'>
+      return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
         <div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           <div className='text-preview'><div className='text-preview-inner'>{ReactHtmlParser(block.content)}</div></div>
@@ -235,7 +268,7 @@ if (loading) return 'Loading...';
           </div>)
     }else if(block.__typename=="Attachment"){
         
-      return (<div key={block.id} id={block.id} className='plain-block'>
+      return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
         <div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
@@ -247,7 +280,7 @@ if (loading) return 'Loading...';
     }else if(block.__typename=="Embed"){
        
       
-      return (<div key={block.id} id={block.id} className='plain-block'>
+      return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
         <div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
@@ -258,7 +291,8 @@ if (loading) return 'Loading...';
           </div>)
     }else if (block.__typename=="Link"){
        
-      return (<div key={block.id} id={block.id} className='plain-block'>
+      return (
+        <div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")} >
         <div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
@@ -275,6 +309,7 @@ if (loading) return 'Loading...';
 
      <header className="App-header Homepage">
           <div className="edit-area">
+            <div onClick={() => handleAll()} className="all on">Show All</div>
             {allBlocks}
           </div>
       </header>

@@ -1,22 +1,33 @@
+body{
+	background: #1b1b1d;
+	color:#1b1b1d;
+}
+
 .plain-block{
 	display:inline-block;
 	max-height: 210px;
 	max-width:150px;
 	overflow-y: scroll;
 	vertical-align: top;
-	padding:8px;
+	margin:8px;
+	border:1px solid whitesmoke;
+	border-radius:5px;
+	background: #1b1b1d;
+
+}
+.resonance.on{
+	background: yellow;
 }
 
 .plain-block-inner{
 	font-size:18px;
-	width:100px;
+	width:100%;
 	height:100px;
 	display:block;
 	vertical-align: top;
-	border:1px solid black;
-	border-radius:5px;
 	overflow:hidden;
 	padding:8px;
+	background: whitesmoke;
 }
 .plain-block-inner img{
 	max-width: 100%;
@@ -31,12 +42,25 @@
    content:"...";
    display: block;
 }
-.resonance{
+.resonance, .all{
+	background: white;
 	font-size:10px;
 	border: 1px solid black;
 	border-radius: 100%;
 	padding:8px;
 	float:left;
 	display: inline-block;
+	cursor: pointer;
 }
-
+.resonance:hover, .all:hover{
+  background:yellow;
+}
+.all.on{
+	background: yellow;
+}
+.all{
+	position: fixed;
+	right:5px;
+	top:5px;
+	font-size:12px;
+}
