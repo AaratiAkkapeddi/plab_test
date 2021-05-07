@@ -176,6 +176,24 @@ if (loading) return 'Loading...';
       re.classList.remove("on") 
     })
   }
+
+  let handleNode = (resonances) => {
+    console.log(resonances)
+    let els = document.querySelectorAll(".plain-block");
+    let all = document.querySelector(".all");
+    all.classList.remove('on')
+    els.forEach((el)=>{
+      el.style.display = "none";
+
+      resonances.forEach((res)=>{
+        if(el.classList.contains(res)){
+          el.style.display = "inline-block";
+        }
+      })
+      
+    })
+  }
+
     let blocks = data.channel.blokks;
     let blocksClean = [];
     blocks.forEach((c) => {
@@ -250,7 +268,7 @@ if (loading) return 'Loading...';
      
       
       return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
-        <div className='plain-block-inner'>
+        <div onClick={() => handleNode(resonancesClean)} className="node-button"></div><div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
         <img alt={block.title} src={block.image_url}/>
@@ -261,7 +279,7 @@ if (loading) return 'Loading...';
     } else if (block.__typename == "Text"){
         
       return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
-        <div className='plain-block-inner'>
+        <div onClick={() => handleNode(resonancesClean)} className="node-button"></div><div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           <div className='text-preview'><div className='text-preview-inner'>{ReactHtmlParser(block.content)}</div></div>
            </div> {allComments}
@@ -269,7 +287,7 @@ if (loading) return 'Loading...';
     }else if(block.__typename=="Attachment"){
         
       return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
-        <div className='plain-block-inner'>
+        <div onClick={() => handleNode(resonancesClean)} className="node-button"></div><div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
         <img alt={block.title} src={block.image_url}/>
@@ -281,7 +299,7 @@ if (loading) return 'Loading...';
        
       
       return (<div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")}>
-        <div className='plain-block-inner'>
+        <div onClick={() => handleNode(resonancesClean)} className="node-button"></div><div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
         <img alt={block.title} src={block.image_url}/>
@@ -293,7 +311,7 @@ if (loading) return 'Loading...';
        
       return (
         <div key={block.id} id={block.id} className={'plain-block ' + resonancesClean.join(" ")} >
-        <div className='plain-block-inner'>
+        <div onClick={() => handleNode(resonancesClean)} className="node-button"></div><div className='plain-block-inner'>
           <a href={"/comment/"+block.id}>{ReactHtmlParser(block.title || "Untitled")}</a>
           {block.image_url &&
         <img alt={block.title} src={block.image_url}/>

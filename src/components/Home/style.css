@@ -2,8 +2,17 @@ body{
 	background: #1b1b1d;
 	color:#1b1b1d;
 }
-
+.node-button{
+	background: green;
+	border-radius: 100px;
+	width:20px;
+	height:20px;
+	position: absolute;
+	top:0px;
+	right:0px;
+}
 .plain-block{
+	position: relative;
 	display:inline-block;
 	max-height: 210px;
 	max-width:150px;
@@ -34,6 +43,7 @@ body{
 	vertical-align: top;
 	overflow:hidden;
 	padding:8px;
+	padding-top:20px;
 	background: whitesmoke;
 }
 .plain-block-inner img{
