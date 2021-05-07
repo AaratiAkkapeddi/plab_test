@@ -19,18 +19,33 @@ const BlockQuery = gql`
       blokk(id: $id){
           ... on Text {
             content(format: HTML, no_links: true)
+            comments{
+              body
+            }
           }
           ... on Image {
             image_url
+            comments{
+              body
+            }
           }
           ... on Link {
             href
+            comments{
+              body
+            }
           }
           ... on Embed{
             embed_html
+            comments{
+              body
+            }
           }
           ... on Attachment{
             file_url
+            comments{
+              body
+            }
           }   
       }
     }  
@@ -63,7 +78,7 @@ let { block } = useParams();
         })
       } 
       
-      return (<div id={block} className='plain-block'>
+      return (<div id={block} className='plain-block-comment'>
           <a href={"https://www.are.na/block/"+block}>{ReactHtmlParser(data.blokk.title || "Untitled")}</a>
           {data.blokk.image_url &&
         <img alt={data.blokk.title} src={data.blokk.image_url}/>

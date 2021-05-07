@@ -15,6 +15,13 @@ body{
 	background: #1b1b1d;
 
 }
+.plain-block-comment{
+	width: 500px;
+	background: whitesmoke;
+}
+.plain-block-comment img{
+	max-width: 100%;
+}
 .resonance.on{
 	background: yellow;
 }
